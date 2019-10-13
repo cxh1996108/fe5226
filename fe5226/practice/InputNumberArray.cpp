@@ -9,18 +9,23 @@
 */
 
 #include <iostream>
+//#include <array>
 
 using namespace std;
 
 int main()
 {
+//    array<int, 5> a = {1,2,3,4,5};
+//    cout << a.size() << endl; // c style int a[] = {} does not have a.size() operation
+    
+    
     // initialize necessary variables (note the use of unsigned)
     unsigned int capacity = 10;   // storage capacity
     unsigned int size = 0;        // how many numbers have been stored so far
     unsigned int *numbers = new unsigned int[capacity];  // allocate memory storage
 
     // we start an infinite loop, which we will stop with 'break'
-    // we keep asking the user to enter a number until a negative number is entered 
+    // we keep asking the user to enter a number until a negative number is entered
     while (true) {
 
         int userInput;
@@ -87,7 +92,7 @@ int main()
     for (auto i = 0u; i < size; ++i) // note the use of 'auto' and of suffix 'u'
         cout << numbers[i] << " ";
     cout << endl;
-
+    
     // release memory
     delete[] numbers;
 
