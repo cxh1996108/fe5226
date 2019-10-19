@@ -15,6 +15,9 @@
 #include <cstring>
 #include <cstdlib>
 #include <typeinfo>
+#include <list>
+#include <vector>
+
 
 using namespace std;
 
@@ -54,9 +57,24 @@ void printArray(const MyArray &numbers) {
     cout << endl;
 }
 
+template <typename Container>
+void print(const Container& c, const string& msg) {
+    cout << "Size: " << c.size()
+        << ", Capcaity: " << c.capacity()
+        << endl;
+    
+    
+    for (auto it = c.cbegin(); it != c.cend(); ++it) {
+        cout << *it << ", ";
+    }
+    cout << endl;
+}
 
 int main () {
+    vector<int> v(10, 5);
+    print(v, "Create");
     
+    v.shrink_to_fit(); // shrink capacity to size of the vector
     
 //    MyArray numbers;
 //    numbers.v = new int[numbers.capacity];
@@ -77,10 +95,18 @@ int main () {
 //
 //    printArray(numbers);
         
-
-    
-    
-    
+//    struct ComplexNumber {
+//        double realpart;
+//        double imagpart;
+//    };
+//
+//    ComplexNumber *p = new ComplexNumber[2];
+//    p[0] = {1, 2};
+//    p[1] = {3, 4};
+//    cout << p[0].imagpart << " " << p[1].imagpart << endl;
+//
+//    delete [] p;
+//
     
     
     
