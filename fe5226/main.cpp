@@ -67,12 +67,25 @@ void print(const Container& c, const string& msg) {
     for (auto it = c.cbegin(); it != c.cend(); ++it) {
         cout << *it << ", ";
     }
-    cout << endl;
+    cout << msg << "\n";
 }
 
 int main () {
-    vector<int> v(10, 5);
+    vector<int> v;
     print(v, "Create");
+    
+    v.reserve(20);
+    print(v, "Reserved");
+    
+    v.assign(20, 5);
+    print(v, "Assigned");
+    
+    v.push_back(0);
+    print(v, "Pushed back");
+    
+    v.clear();
+    print(v, "Cleared");
+    
     
     v.shrink_to_fit(); // shrink capacity to size of the vector
     
