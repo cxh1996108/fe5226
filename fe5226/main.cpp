@@ -17,7 +17,8 @@
 #include <typeinfo>
 #include <list>
 #include <vector>
-
+#include <exception>
+#include <sstream>
 
 using namespace std;
 
@@ -60,7 +61,7 @@ void printArray(const MyArray &numbers) {
 template <typename Container>
 void print(const Container& c, const string& msg) {
     cout << "Size: " << c.size()
-        << ", Capcaity: " << c.capacity()
+//        << ", Capcaity: " << c.capacity()
         << endl;
     
     
@@ -70,24 +71,87 @@ void print(const Container& c, const string& msg) {
     cout << msg << "\n";
 }
 
+template <typename T>
+const T& i_th_element (const list<T>& l, size_t i) {
+    // scope here is used to shorten the lift of the statment, to void mistakes.
+    auto it = l.begin();
+    size_t j = 0;
+    while (j < i) {
+        if (it != l.cend()) {
+            ++j;
+            ++it;
+        }
+        else {
+            cout << "Cannot get the " << i << "th element. This List is too short! " << "\n";
+            exit(-1);
+        }
+    }
+
+    return *it;
+}
+
+pair<double, double> roots(double a, double b, double c) {
+    double delta = b * b -4.0 * a * c;
+    
+    if (delta < 0) {
+        ostringstream os;
+        os << __FILE__ << ": line " // macros
+            << __LINE__ << ", " // macros
+            << "Negative discriminant " << delta << "\n";
+        throw invalid_argument(os.str());
+    }
+    double disc = sqrt(delta);  // this can cause an error if (delta < 0)
+    double a2 = 2 * a;
+    return make_pair((-b + disc) / a2, -(b + disc) / a2);
+    
+}
+
+
 int main () {
-    vector<int> v;
-    print(v, "Create");
-    
-    v.reserve(20);
-    print(v, "Reserved");
-    
-    v.assign(20, 5);
-    print(v, "Assigned");
-    
-    v.push_back(0);
-    print(v, "Pushed back");
-    
-    v.clear();
-    print(v, "Cleared");
     
     
-    v.shrink_to_fit(); // shrink capacity to size of the vector
+    double a = 1, b = 1, c = 1;
+    try {
+        auto res = roots(a, b, c);
+        cout << res.first << res.second << "\n";
+        return 0;
+    }
+    catch (const invalid_argument& e) {
+        cout << e.what() << "\n";
+        return -1;
+    }
+    
+    
+    
+//
+//    list<int> v(3, 4);
+//    print(v, "Create");
+//
+//    for (auto& x : v) {
+//        x = rand() % 10;
+//    }
+//    print(v, "Rand");
+//
+//    cout << i_th_element(v, 4);
+
+    
+//    vector<int> v;
+//    print(v, "Create");
+//
+//    v.reserve(20);
+//    print(v, "Reserved");
+//
+//    v.assign(20, 5);
+//    print(v, "Assigned");
+//
+//    v.push_back(0);
+//    print(v, "Pushed back");
+//
+//    v.clear();
+//    print(v, "Cleared");
+//
+//
+//    v.shrink_to_fit(); // shrink capacity to size of the vector
     
 //    MyArray numbers;
 //    numbers.v = new int[numbers.capacity];
