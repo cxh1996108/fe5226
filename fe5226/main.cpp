@@ -19,6 +19,7 @@
 #include <vector>
 #include <exception>
 #include <sstream>
+#include <set>
 
 using namespace std;
 
@@ -109,18 +110,30 @@ pair<double, double> roots(double a, double b, double c) {
 
 int main () {
     
+//    std::set<int> myset = {10, 20, 30, 40, 50};
+//    std::set<int>::iterator it;
+//
+//    it = myset.find(70);
+//    cout << *it << endl;
+//    cout << *(myset.end());
+//    if (it != myset.end())
+//        cout << "Number found" << endl;
+//    else
+//        cout << "Number not found" << endl;
+//
     
-    double a = 1, b = 1, c = 1;
-    try {
-        auto res = roots(a, b, c);
-        cout << res.first << res.second << "\n";
-        return 0;
-    }
-    catch (const invalid_argument& e) {
-        cout << e.what() << "\n";
-        return -1;
-    }
     
+//    double a = 1, b = 1, c = 1;
+//    try {
+//        auto res = roots(a, b, c);
+//        cout << res.first << res.second << "\n";
+//        return 0;
+//    }
+//    catch (const invalid_argument& e) {
+//        cout << e.what() << "\n";
+//        return -1;
+//    }
+//
     
     
 //
